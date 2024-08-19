@@ -49,7 +49,7 @@ export default function CabinRow({ cabin }) {
     name,
     maxCapacity,
     regular_price: regularPrice,
-    discont,
+    discount,
     image,
   } = cabin;
 
@@ -72,7 +72,7 @@ export default function CabinRow({ cabin }) {
       <Cabin>{name}</Cabin>
       <div>Fits up tp {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
-      <Discount>{formatCurrency(discont)}</Discount>
+      <Discount>{formatCurrency(discount)}</Discount>
       <button disabled={isLoading} onClick={() => mutate(cabinId)}>
         Delete
       </button>
