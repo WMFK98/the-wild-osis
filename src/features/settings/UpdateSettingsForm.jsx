@@ -5,54 +5,82 @@ import Input from '../../ui/Input';
 import useSettings from './useSettings';
 import Button from '../../ui/Button';
 import Spinner from '../../ui/Spinner';
+import useUpdateSetting from './useUpdateSettings-VForm';
 
 function UpdateSettingsForm() {
-  const { settings, isLoading, error } = useSettings();
+  const { settings, isLoading } = useSettings();
   const { register, handleSubmit, formState } = useForm({
     defaultValues: settings,
   });
 
+  const { errors } = formState;
+
+  const { isUpdating, updateCabin } = useUpdateSetting();
+
   function onSubmit(data) {
-    console.log(data);
+    const res = updateCabin(data);
   }
 
-  function onError() {
-    console.log(formState.errors);
-  }
-
-  if (isLoading) return <Spinner />
-
+  if (isLoading) return <Spinner />;
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <FormRow label="Minimum nights/booking">
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormRow
+        id="min-nights"
+        label="Minimum nights/booking"
+        error={errors.min_booking_length}
+      >
         <Input
-          {...register('max_booking_length', { required: 'kuy' })}
+          disabled={isUpdating}
+          {...register('min_booking_length', {
+            required: 'This field is required',
+          })}
           type="number"
           id="min-nights"
         />
       </FormRow>
-      <FormRow label="Maximum nights/booking">
+      <FormRow
+        id="max-nights"
+        label="Maximum nights/booking"
+        error={errors.max_booking_length}
+      >
         <Input
-          {...register('max_booking_length', { required: 'kuy' })}
+          disabled={isUpdating}
+          {...register('max_booking_length', {
+            required: 'This field is required',
+          })}
           type="number"
           id="max-nights"
         />
       </FormRow>
-      <FormRow label="Maximum guests/booking">
+      <FormRow
+        id="max-guests"
+        label="Maximum guests/booking"
+        error={errors.max_guests_per_booking}
+      >
         <Input
-          {...register('max_guests_per_booking', { required: 'kuy' })}
+          disabled={isUpdating}
+          {...register('max_guests_per_booking', {
+            required: 'This field is required',
+          })}
           type="number"
           id="max-guests"
         />
       </FormRow>
-      <FormRow label="Breakfast price">
+      <FormRow
+        id="breakfast-price"
+        label="Breakfast price"
+        error={errors.breakfast_price}
+      >
         <Input
-          {...register('breakfast_price', { required: 'kuy' })}
+          disabled={isUpdating}
+          {...register('breakfast_price', {
+            required: 'This field is required',
+          })}
           type="number"
           id="breakfast-price"
         />
       </FormRow>
-      <Button>click</Button>
+      <Button disabled={isUpdating}>Update</Button>
     </Form>
   );
 }
