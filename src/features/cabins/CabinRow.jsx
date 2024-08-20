@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { formatCurrency } from './../../utils/helpers';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
+import { HiSquare2Stack, HiPencil, HiTrash } from 'react-icons/hi2';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import CreateCabinForm from './CreateCabinForm';
 import useDeleteCabin from './useDeleteCabin';
+import useCreateCabin from './useCreateCabin';
 
 const TableRow = styled.div`
   display: grid;
@@ -52,12 +53,25 @@ export default function CabinRow({ cabin }) {
     id: cabinId,
     name,
     max_capacity,
-    regular_price: regularPrice,
+    regular_price,
     discount,
     image,
+    description,
   } = cabin;
 
   const { isDeleting, deleteCarbinMutaion } = useDeleteCabin();
+  const { createCabin, isCreating } = useCreateCabin();
+
+  function handleDuplicate() {
+    createCabin({
+      name: `Copy of ${name}`,
+      max_capacity,
+      regular_price,
+      discount,
+      image,
+      description,
+    });
+  }
 
   return (
     <>
@@ -65,17 +79,22 @@ export default function CabinRow({ cabin }) {
         <Img src={image} alt="" />
         <Cabin>{name}</Cabin>
         <div>Fits up tp {max_capacity} guests</div>
-        <Price>{formatCurrency(regularPrice)}</Price>
+        <Price>{formatCurrency(regular_price)}</Price>
         <Discount>
           {discount ? formatCurrency(discount) : <span>&mdash;</span>}
         </Discount>
         <div>
-          <button onClick={() => setShowForm((value) => !value)}>Edit</button>
+          <button disabled={isCreating} onClick={handleDuplicate}>
+            <HiSquare2Stack />
+          </button>
+          <button onClick={() => setShowForm((value) => !value)}>
+            <HiPencil />
+          </button>
           <button
             disabled={isDeleting}
             onClick={() => deleteCarbinMutaion(cabinId)}
           >
-            Delete
+            <HiTrash />
           </button>
         </div>
       </TableRow>
