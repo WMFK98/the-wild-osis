@@ -5,82 +5,67 @@ import Input from '../../ui/Input';
 import useSettings from './useSettings';
 import Button from '../../ui/Button';
 import Spinner from '../../ui/Spinner';
-import useUpdateSetting from './useUpdateSettings-VForm';
+import useUpdateSetting from './useUpdateSettings';
 
 function UpdateSettingsForm() {
   const { settings, isLoading } = useSettings();
-  const { register, handleSubmit, formState } = useForm({
-    defaultValues: settings,
-  });
-
-  const { errors } = formState;
-
   const { isUpdating, updateCabin } = useUpdateSetting();
+  const {
+    breakfast_price,
+    max_booking_length,
+    max_guests_per_booking,
+    min_booking_length,
+  } = settings;
 
-  function onSubmit(data) {
-    const res = updateCabin(data);
+  function handleUpdate(e, field) {
+    const { value } = e.target;
+    if (!value) return;
+    updateCabin({ [field]: value });
   }
 
   if (isLoading) return <Spinner />;
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow
-        id="min-nights"
-        label="Minimum nights/booking"
-        error={errors.min_booking_length}
-      >
+    <Form>
+      <FormRow id="min-nights" label="Minimum nights/booking">
         <Input
           disabled={isUpdating}
-          {...register('min_booking_length', {
-            required: 'This field is required',
-          })}
+          defaultValue={min_booking_length}
           type="number"
           id="min-nights"
+          onBlur={(e) => handleUpdate(e, 'min_booking_length')}
+          min="0"
         />
       </FormRow>
-      <FormRow
-        id="max-nights"
-        label="Maximum nights/booking"
-        error={errors.max_booking_length}
-      >
+      <FormRow id="max-nights" label="Maximum nights/booking">
         <Input
           disabled={isUpdating}
-          {...register('max_booking_length', {
-            required: 'This field is required',
-          })}
+          defaultValue={max_booking_length}
           type="number"
           id="max-nights"
+          onBlur={(e) => handleUpdate(e, 'max_booking_length')}
+          min="0"
         />
       </FormRow>
-      <FormRow
-        id="max-guests"
-        label="Maximum guests/booking"
-        error={errors.max_guests_per_booking}
-      >
+      <FormRow id="max-guests" label="Maximum guests/booking">
         <Input
           disabled={isUpdating}
-          {...register('max_guests_per_booking', {
-            required: 'This field is required',
-          })}
+          defaultValue={max_guests_per_booking}
           type="number"
           id="max-guests"
+          onBlur={(e) => handleUpdate(e, 'max_guests_per_booking')}
+          min="0"
         />
       </FormRow>
-      <FormRow
-        id="breakfast-price"
-        label="Breakfast price"
-        error={errors.breakfast_price}
-      >
+      <FormRow id="breakfast-price" label="Breakfast price">
         <Input
           disabled={isUpdating}
-          {...register('breakfast_price', {
-            required: 'This field is required',
-          })}
+          defaultValue={breakfast_price}
           type="number"
           id="breakfast-price"
+          onBlur={(e) => handleUpdate(e, 'breakfast_price')}
+          min="0"
         />
       </FormRow>
-      <Button disabled={isUpdating}>Update</Button>
     </Form>
   );
 }
