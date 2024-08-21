@@ -15,7 +15,7 @@ function UpdateSettingsForm() {
     max_booking_length,
     max_guests_per_booking,
     min_booking_length,
-  } = settings;
+  } = settings || {};
 
   function handleUpdate(e, field) {
     const { value } = e.target;
