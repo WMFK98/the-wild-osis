@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { formatCurrency } from './../../utils/helpers';
+import { formatCurrency } from '../../utils/helpers';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HiSquare2Stack, HiPencil, HiTrash } from 'react-icons/hi2';
 import toast from 'react-hot-toast';
@@ -88,6 +88,20 @@ export default function CabinRow({ cabin }) {
         </Discount>
         <div>
           <Modal>
+            <button disabled={isCreating} onClick={handleDuplicate}>
+              <HiSquare2Stack />
+            </button>
+            <Modal.Open opens="edit">
+              <button>
+                <HiPencil />
+              </button>
+            </Modal.Open>
+            <Modal.Open opens={'delete'}>
+              <button>
+                <HiTrash />
+              </button>
+            </Modal.Open>
+
             <Modal.Window name="delete">
               <ConfirmDelete
                 resourceName={name}
@@ -98,23 +112,6 @@ export default function CabinRow({ cabin }) {
             <Modal.Window name="edit">
               <CreateCabinForm cabinToEdit={cabin} />
             </Modal.Window>
-            <Menus.Menu>
-              <Menus.Toggle id={cabinId} />
-              <Menus.List id={cabinId}>
-                <Menus.Button
-                  icon={<HiSquare2Stack />}
-                  onClick={handleDuplicate}
-                >
-                  Duplicate
-                </Menus.Button>
-                <Modal.Open opens="edit">
-                  <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
-                </Modal.Open>
-                <Modal.Open opens={'delete'}>
-                  <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
-                </Modal.Open>
-              </Menus.List>
-            </Menus.Menu>
           </Modal>
         </div>
       </Table.Row>
