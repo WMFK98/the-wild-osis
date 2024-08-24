@@ -21,13 +21,15 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   function onSubmit(data) {
     const image = typeof data.image === 'string' ? data.image : data.image[0];
     if (isEditSession)
-      editCabin({ newcabinData: { ...data, image }, id: editId });
+      editCabin(
+        { newcabinData: { ...data, image }, id: editId },
+        { onSuccess: () => onCloseModal?.() }
+      );
     else
       createCabin(
         { ...data, image: image },
         {
           onSuccess: () => {
-            reset();
             onCloseModal?.();
           },
         }

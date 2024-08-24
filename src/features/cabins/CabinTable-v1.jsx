@@ -4,15 +4,14 @@ import { getCatbins } from '../../services/apiCabins';
 import Spinner from '../../ui/Spinner';
 import CabinRow from './CabinRow';
 import useCabins from './useCabins';
-import { createContext } from 'react';
-// const Table = styled.div`
-//   border: 1px solid var(--color-grey-200);
+const Table = styled.div`
+  border: 1px solid var(--color-grey-200);
 
-//   font-size: 1.4rem;
-//   background-color: var(--color-grey-0);
-//   border-radius: 7px;
-//   overflow: hidden;
-// `;
+  font-size: 1.4rem;
+  background-color: var(--color-grey-0);
+  border-radius: 7px;
+  overflow: hidden;
+`;
 
 const TableHeader = styled.header`
   display: grid;
@@ -29,20 +28,22 @@ const TableHeader = styled.header`
   padding: 1.6rem 2.4rem;
 `;
 
-const TableContext = createContext();
+export default function CabinTable() {
+  const { cabins, error, isLoading } = useCabins();
+  if (isLoading) return <Spinner />;
 
-function Table({ columans, children }) {
   return (
-    <TableContext.Provider value={columans}>
-      <StyledTable>{children}</StyledTable>
-    </TableContext.Provider>
+    <Table role="table">
+      <TableHeader role="row">
+        <div></div>
+        <div>Cabin</div>
+        <div>capacity</div>
+        <div>Price</div>
+        <div>Discount</div>
+      </TableHeader>
+      {cabins?.map?.((cabin) => (
+        <CabinRow cabin={cabin} key={cabin.id} />
+      ))}
+    </Table>
   );
 }
-function Header({ children }) {}
-function Row({ children }) {}
-function Body({ children }) {}
-function Footer({ children }) {}
-Table.Header = Header;
-Table.Body = Body;
-Table.Row = Row;
-Table.Footer = Footer;
