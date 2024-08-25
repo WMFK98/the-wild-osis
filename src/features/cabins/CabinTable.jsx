@@ -20,6 +20,22 @@ export default function CabinTable() {
     filteredCabin = cabins.filter((cabin) => cabin.discount === 0);
   if (filterValue === 'no-discount')
     filteredCabin = cabins.filter((cabin) => cabin.discount > 0);
+
+  //sort
+
+  const sortBy = searchParams.get('sortBy') || 'startDate-asc';
+  const [field, direction] = sortBy.split('-');
+  console.log(field, direction);
+  const modifier = direction === 'asc' ? 1 : -1;
+
+  // const sortedCabinsByChar = filteredCabin.sort(
+  //   (a, b) => a[field].localeCompare(b[field]) * modifier
+  // );
+  const sortedCabins = filteredCabin.sort(
+    (a, b) => (a[field] - b[field]) * modifier
+  );
+
+  console.log(cabins.at(0)[field]);
   return (
     <Menus>
       <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
@@ -31,7 +47,7 @@ export default function CabinTable() {
           <div>Discount</div>
         </Table.Header>
         <Table.Body
-          data={filteredCabin}
+          data={sortedCabins}
           render={(filteredCabin) => (
             <CabinRow cabin={filteredCabin} key={filteredCabin.id} />
           )}
