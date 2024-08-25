@@ -16,14 +16,14 @@ export default function CabinTableOperations() {
       />
       <SortBy
         options={[
-          { value: 'name-asc', lable: 'Sort by name (A-Z)' },
-          { value: 'name-desc', lable: 'Sort by name (Z-A)' },
-          { value: 'regular_price-asc', lable: 'Sort by price (low first)' },
-          { value: 'regular_price-desc', lable: 'Sort by price (high first)' },
-          { value: 'max_capacity-asc', lable: 'Sort by Capacity (low first)' },
+          { value: 'name-asc', label: 'Sort by name (A-Z)' },
+          { value: 'name-desc', label: 'Sort by name (Z-A)' },
+          { value: 'regular_price-asc', label: 'Sort by price (low first)' },
+          { value: 'regular_price-desc', label: 'Sort by price (high first)' },
+          { value: 'max_capacity-asc', label: 'Sort by Capacity (low first)' },
           {
             value: 'max_capacity-desc',
-            lable: 'Sort by Capacity (high first)',
+            label: 'Sort by Capacity (high first)',
           },
         ]}
       />
