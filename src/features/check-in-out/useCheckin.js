@@ -12,10 +12,14 @@ export default function useCheckin() {
     isLoading: isCheckingIn,
     error,
   } = useMutation({
-    mutationFn: (bookingId) =>
-      updateBooking(bookingId, { status: 'checked-in', isPaid: true }),
-    onSuccess: () => {
-      toast.success(`Booking #${bookingId} successfully checked in`);
+    mutationFn: ({ bookingId, breakfast }) =>
+      updateBooking(bookingId, {
+        status: 'checked-in',
+        isPaid: true,
+        ...breakfast,
+      }),
+    onSuccess: (booking) => {
+      toast.success(`Booking #${booking.id} successfully checked in`);
       queryClient.invalidateQueries({ active: true });
       navigate('/');
     },
