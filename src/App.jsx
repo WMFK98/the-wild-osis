@@ -18,6 +18,7 @@ import { Toaster } from 'react-hot-toast';
 import Checkin from './pages/Checkin';
 import ProtectedRoute from './ui/ProtectedRoute';
 import { DarkModeProvider } from './contexts/DarkModeContext';
+import './styles/index.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {
