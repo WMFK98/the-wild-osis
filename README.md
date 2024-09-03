@@ -97,8 +97,5 @@ Password: 111111111
     npm run dev
     ```
 
-## Contributing
-
-Contributions to the Wild Oasis project are welcome! If you have suggestions or improvements, please create a pull request or open an issue.
-
-For more details and to see the full course, check out the Ultimate React course on [Udemy](https://www.udemy.com/course/ultimate-react/).
+## Credit
+Special thanks to Jonas for the insightful and comprehensive "Ultimate React" course on Udemy. His expertise and clear explanations have significantly enhanced my understanding of React and modern web development practices. The course's hands-on approach and well-structured content have been invaluable in advancing my skills and knowledge in React.
