@@ -18,7 +18,7 @@ export default function Sildebar() {
     <StyledSidebar>
       <Logo />
       <MainNav />
-      {/* <Uploader /> */}
+      <Uploader />
     </StyledSidebar>
   );
 }
