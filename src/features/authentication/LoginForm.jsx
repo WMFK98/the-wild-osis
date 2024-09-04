@@ -2,14 +2,15 @@ import { useState } from 'react';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import Input from '../../ui/Input';
-import FormRowVertical from '../../ui/FormRow';
 import useLogin from './useLogin';
 import SpinnerMini from '../../ui/SpinnerMini';
 import { useNavigate } from 'react-router-dom';
-
+import FormRowVertical from '../../ui/FormRowVertical';
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('demo@example.com');
+  const [password, setPassword] = useState(
+    "#Wsw-</x'&Z%?d_#S>w6{D=}a!XVp1:2-CEB4>qB!<HuB:,69-"
+  );
   const { isLoading, login } = useLogin();
   const navigate = useNavigate();
   function handleSubmit(e) {

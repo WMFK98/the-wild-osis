@@ -4,6 +4,7 @@ import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import useSingup from './useSignup';
+import toast from 'react-hot-toast';
 
 // Email regex: /\S+@\S+\.\S+/
 
@@ -13,7 +14,8 @@ function SignupForm() {
   const { errors } = formState;
 
   function onSubmit({ fullName, email, password }) {
-    singup({ fullName, email, password }, { onSettled: reset });
+    toast.success('successful test creating user ;)');
+    // singup({ fullName, email, password }, { onSettled: reset });
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
