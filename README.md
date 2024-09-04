@@ -42,8 +42,10 @@ Password: 111111111
 
 ## Server side
 ![supabase-logo](img-info/supabase-logo-wordmark--dark.png)  
+![supabase-logo](img-info/relation-data.png)  
 
-## Page
+
+## Showcase
 ![login](img-info/login.png) 
 ![bookings](img-info/bookings.png) 
 ![bookingDetail](img-info/bookingDetail-2.png) 
@@ -52,15 +54,6 @@ Password: 111111111
 
 ## Dark mode
 ![dashboard-dark](img-info/dashboard-dark.png) 
-
-## Learning Objectives
-
-- **Component-Based Architecture**: Understand how to build and manage reusable components in React such as compounding component.
-- **Routing**: Implement client-side routing with React Router for navigation between different pages.
-- **API Integration**: Fetch and handle data from external APIs to dynamically update the user interface.
-- **Form Handling**: Create and validate forms to handle user inputs effectively.
-
-
 
 ## Getting Started
 
