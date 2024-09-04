@@ -18,15 +18,6 @@ luxurious wooden cabins
 everything about the hotel: bookings, cabins
 and guests
 
-
-* This is the internal application used inside the
-hotel to check in guests as they arrive
-
-
-* They have nothing right now, so they also need
-the API
-
-
 * Later they will probably want a customer-facing
 website as well, where customers will be able to
 book stays, using the same API
