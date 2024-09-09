@@ -25,11 +25,6 @@ book stays, using the same API
 ## Test
 Link: https://the-wild-osis.vercel.app/
 
-Email: wishira2021.coth@gmail.com
-
-Password: 111111111
-
-
 ## Project requirements from the business
 ![requirement-1](img-info/requirement-1.png) 
 ![requirement-2](img-info/requirement-2.png)  
