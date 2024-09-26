@@ -82,18 +82,6 @@ function Open({ children, opens: opensWindowName }) {
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
   const ref = useEventClickOutSide(close);
-
-  // const ref = useRef();
-  // useEffect(function () {
-  //   function handleClick(e) {
-  //     if (ref.current && !ref.current.contains(e.target)) close();
-  //   }
-  //   document.addEventListener('click', handleClick, { capture: true });
-  //   return () => {
-  //     removeEventListener('click', handleClick);
-  //   };
-  // }, []);
-
   if (name !== openName) return null;
   return createPortal(
     <Overlay>
